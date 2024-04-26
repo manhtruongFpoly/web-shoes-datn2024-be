@@ -6,6 +6,7 @@ import com.example.demo.model.dto.CreateOrderReq;
 import com.example.demo.model.entity.OrderEntity;
 import com.example.demo.payload.request.CreateDeliveryOrder;
 import com.example.demo.payload.request.CreateOrderAtTheCounter;
+import com.example.demo.payload.request.OrderDetailResponse;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 
 import java.util.List;
@@ -56,4 +57,10 @@ public interface OrderService {
     List<OrderEntity> searchOrder(String name);
 
     List<OrderEntity> listStatusPayment();
+
+    OrderDetailResponse sumTotalOrderDetail(Long idOrder);
+
+    List<OrderEntity> listOrderStatusAndUserId(OrderStatusEnum status);
+
+    void reOrder(Long orderId);
 }

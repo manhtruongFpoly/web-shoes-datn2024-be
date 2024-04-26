@@ -7,8 +7,6 @@ import com.example.demo.payload.response.DefaultResponse;
 import com.example.demo.payload.response.ServiceResult;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
 public interface ProductService {
     DefaultResponse<ProductDto> viewDetailProduct(Long productId);
 

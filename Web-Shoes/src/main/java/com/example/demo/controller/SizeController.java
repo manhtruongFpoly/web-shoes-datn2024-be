@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.payload.response.DefaultResponse;
-import com.example.demo.service.CategoryService;
+import com.example.demo.service.SizeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,20 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api/v1/category")
+@RequestMapping("/api/size")
 @RequiredArgsConstructor
-public class CategoryController {
+public class SizeController {
 
-    private final CategoryService categoryService;
+    private final SizeService sizeService;
 
-
-    //todo:Danh sách category theo status
-    @GetMapping("/list-status")
-    public ResponseEntity<?> listCategory(
-    ) {
-        return ResponseEntity.ok(DefaultResponse.success(categoryService.listCategory()));
+    @GetMapping("/list")
+    public ResponseEntity<?> getAllSize(){
+        return ResponseEntity.ok().body(sizeService.listSize());
     }
-
 
 
 }

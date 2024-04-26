@@ -9,7 +9,9 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.transform.Transformers;
-import org.hibernate.type.*;
+import org.hibernate.type.IntegerType;
+import org.hibernate.type.LongType;
+import org.hibernate.type.StringType;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -86,7 +88,8 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
                 "\t\t),\n" +
                 "\t']'\n" +
                 ") AS listColors,\n" +
-                "    p.img_list\n" +
+                "    p.img_list,\n" +
+                "    p.status\n" +
                 "from products p \n" +
                 "join product_sizes ps on p.id = ps.product_id\n" +
                 "join sizes s on s.id = ps.size_id\n" +
@@ -126,6 +129,7 @@ public class ProductCustomRepositoryImpl implements ProductCustomRepository {
                 productDto1.setListSizes(DataUtil.safeToString(obj[12]));
                 productDto1.setListColors(DataUtil.safeToString(obj[13]));
                 productDto1.setImgList(DataUtil.safeToString(obj[14]));
+                productDto1.setStatus(DataUtil.safeToInt(obj[15]));
                 productDtoList.add(productDto1);
             }
         }

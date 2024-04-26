@@ -1,15 +1,10 @@
 package com.example.demo.model.dto;
 
-import com.example.demo.contants.RegexContants;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -33,5 +28,7 @@ public class CreateOrderReq {
     private String couponCode;
 
     private Long grandTotal;
+
+    private String vnp_ResponseCode;
 
 }

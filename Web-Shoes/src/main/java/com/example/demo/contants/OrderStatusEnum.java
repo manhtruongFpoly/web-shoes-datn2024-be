@@ -13,8 +13,8 @@ public enum OrderStatusEnum {
     DANGVANCHUYEN(2),
     DAGIAO(3),
     DAHUY(4),
-    DAHOANTHANH(5)
-
+    DAHOANTHANH(5),
+    DATHANHTOAN(6)
     ;
 
     private final int value;

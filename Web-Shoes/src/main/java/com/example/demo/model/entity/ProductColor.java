@@ -1,15 +1,16 @@
 package com.example.demo.model.entity;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+
 @Entity
 @Getter
 @Setter
-@Table(name = "Product_color")
+@Table(name = "product_color")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductColor {

@@ -1,7 +1,5 @@
 package com.example.demo.model.entity;
 
-import javax.persistence.*;
-
 import com.example.demo.contants.OrderStatus;
 import com.example.demo.contants.OrderStatusEnum;
 import com.example.demo.contants.PaymentStatus;
@@ -12,6 +10,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -55,7 +54,6 @@ public class OrderEntity {
     private LocalDateTime updateDate;
 
     private PaymentStatus paymentStatus;
-
     private Integer shipping;
     private String description;
     private String reason;

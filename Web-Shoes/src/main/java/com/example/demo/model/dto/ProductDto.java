@@ -1,11 +1,11 @@
 package com.example.demo.model.dto;
 
-import com.example.demo.contants.StatusEnum;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -32,15 +32,16 @@ public class ProductDto {
     private LocalDateTime updateDate;
     private Integer discount;
     private String description;
-    private StatusEnum status;
+    private Integer status;
     private Long categoryId;
     private Long brandId;
     private String keySearch;
     private String listSizes;
     private String listColors;
-    private List<MultipartFile> files;
+    private List<MultipartFile> files = new ArrayList<>();
     private String sizeName;
     private String colorName;
     private Long idOrder;
     private String imgList;
+    private String[] listImgDelete = new String[0];
 }

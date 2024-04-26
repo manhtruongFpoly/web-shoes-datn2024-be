@@ -9,7 +9,6 @@ import com.example.demo.payload.response.CartResponse;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.security.CustomerDetailService;
-import com.example.demo.service.BrandService;
 import com.example.demo.service.CartService;
 import com.example.demo.until.CurrentUserUtils;
 import lombok.RequiredArgsConstructor;
@@ -97,9 +96,9 @@ public class CartServiceImpl implements CartService {
                     .orElseThrow(() -> new NotFoundException(HttpStatus.NOT_FOUND.value(), "product id not found: " + cartDto.getProductId()));
             CartEntity cart = cartRepository.findAllByUserIdAndProductId(uDetailService.getId(), cartDto.getProductId());
 //            List<ImageEntity> imageEntity = imagesRepository.getImageByProduct(cartDto.getProductId());
-//            if (productEntity.getQuantity()<=0){
-//                throw new BadRequestException("Sản phẩm này đã hết hàng, vui lòng chờ cửa hàng nhập thêm");
-//            }
+            if (productEntity.getQuantity()<=0){
+                throw new BadRequestException("Sản phẩm này đã hết hàng, vui lòng chờ cửa hàng nhập thêm");
+            }
             if (cart == null) {
                 cart = new CartEntity();
                 cart.setUserId(uDetailService.getId());

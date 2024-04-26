@@ -49,23 +49,29 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetailEntity,L
 //            "group by o.id")
 //    List<OrderDetailDto> getAll();
 //
-//    @Query("SELECT new com.example.demo.model.dto.OrderDetailDto(" +
-//            "o.id," +
-//            "o.productPrice," +
-//            "product.name," +
-//            "o.quantity," +
-//            "o.total," +
-//            "product.id," +
-//            "o.orderId," +
-//            "us.id," +
-//            "us.fullname) " +
-//            "FROM OrderDetailEntity o " +
-//            "INNER JOIN ProductEntity product ON o.productId = product.id " +
-//            "INNER JOIN UserEntity us ON o.userId = us.id " +
-//            "WHERE o.orderId = ?1 " +
-//            "group by o.id")
-//    Page<OrderDetailDto> findAllByOrderId(Long id, Pageable pageable);
-//
+
+    @Query("SELECT new com.example.demo.model.dto.OrderDetailDto(" +
+            "o.id," +
+            "o.productPrice," +
+            "o.productName," +
+            "o.quantity," +
+            "o.total," +
+            "o.image," +
+            "product.id," +
+            "o.orderId," +
+            "us.id," +
+            "us.fullname, " +
+            "o.sizeName," +
+            "o.colorName" +
+            ") " +
+            "FROM OrderDetailEntity o " +
+            "INNER JOIN ProductEntity product ON o.productId = product.id " +
+            "INNER JOIN UserEntity us ON o.userId = us.id " +
+            "WHERE o.orderId = ?1 " +
+            "group by o.id")
+    Page<OrderDetailDto> findAllByOrderId(Long id, Pageable pageable);
+
+
     List<OrderDetailEntity> findAllByOrderIdAndUserId(Long id,Long userId);
 
     List<OrderDetailEntity> findAllByUserIdAndOrderId(Long userId, Long orderId);

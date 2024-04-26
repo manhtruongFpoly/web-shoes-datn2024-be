@@ -1,6 +1,5 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.contants.StatusEnum;
 import com.example.demo.exception.BadRequestException;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.dto.ProductDto;
@@ -9,10 +8,7 @@ import com.example.demo.model.entity.ProductEntity;
 import com.example.demo.payload.request.SearchDTO;
 import com.example.demo.payload.response.DefaultResponse;
 import com.example.demo.payload.response.ServiceResult;
-import com.example.demo.repository.BrandRepository;
-import com.example.demo.repository.CategoryRepository;
-import com.example.demo.repository.ProductCustomRepository;
-import com.example.demo.repository.ProductRepository;
+import com.example.demo.repository.*;
 import com.example.demo.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -37,7 +33,8 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryRepository categoryRepository;
     private final BrandRepository brandRepository;
     private final ProductCustomRepository productCustomRepository;
-
+    private final ProductColorRepository productColorRepository;
+    private final ProductSizeRepository productSizeRepository;
 
     @Override
     public DefaultResponse<ProductDto> viewDetailProduct(Long productId){
@@ -84,7 +81,7 @@ public class ProductServiceImpl implements ProductService {
             ProductEntity productEntity = modelMapper.map(productDto, ProductEntity.class);
 
             productEntity.setCategoryId(categoryEntity.getId());
-            productEntity.setStatus(StatusEnum.ACTIVE);
+            productEntity.setStatus(1);
 
             if(productDto.getDiscount() < 1 || productDto.getDiscount() > 100){
                 throw new BadRequestException("Mức giảm giá từ 1% - 100%");
@@ -110,7 +107,7 @@ public class ProductServiceImpl implements ProductService {
 
         productEntity.setId(find.getId());
         productEntity.setCategoryId(findCate.getId());
-        productEntity.setStatus(StatusEnum.ACTIVE);
+        productEntity.setStatus(1);
 
         if(productDto.getDiscount() < 1 || productDto.getDiscount() > 100){
             throw new BadRequestException("Mức giảm giá từ 1% - 100%");
@@ -124,13 +121,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void delete(Long id) {
-        ProductEntity productEntity = productRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(HttpStatus.NOT_FOUND.value(), "Product id not found:" + id));
-        productEntity.setStatus(StatusEnum.DELETED);
-        productRepository.save(productEntity);
+        productColorRepository.deleteAllByProductId(id);
+        productSizeRepository.deleteAllByProductId(id);
+        productRepository.deleteById(id);
     }
-
-
 
     @Override
     public ProductEntity getOne(Long productId) {

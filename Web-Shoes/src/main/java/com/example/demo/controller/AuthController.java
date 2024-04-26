@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.exception.BadRequestException;
-import com.example.demo.model.entity.RoleEntity;
 import com.example.demo.model.entity.UserEntity;
 import com.example.demo.payload.request.LoginRequest;
 import com.example.demo.payload.request.UserRegister;
@@ -14,7 +13,6 @@ import com.example.demo.security.CustomerDetailService;
 import com.example.demo.security.jwt.JwtProvider;
 import com.example.demo.service.AuthService;
 import com.example.demo.service.RoleService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
