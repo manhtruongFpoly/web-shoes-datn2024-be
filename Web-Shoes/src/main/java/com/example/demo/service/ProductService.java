@@ -8,6 +8,7 @@ import com.example.demo.payload.response.ServiceResult;
 import org.springframework.data.domain.Page;
 
 public interface ProductService {
+	//viewDetail
     DefaultResponse<ProductDto> viewDetailProduct(Long productId);
 
     ServiceResult<Page<ProductDto>> searchListProduct(SearchDTO<ProductDto> searchDTO);
